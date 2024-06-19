@@ -20,7 +20,7 @@ export default {
     lostData: 'All data will be lost if you refresh this page or close this tab',
     noImages: 'Upload a video or image to get started',
     selectedImage: 'Selected Image',
-    uploadAndSelect: 'Upload and select an image to add labels',
+    uploadAndSelect: 'Upload and select an image to add captions',
     videoDuration: 'Video duration',
   },
   terms: {
