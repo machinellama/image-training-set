@@ -25,6 +25,7 @@ import VideoDetails from '@/components/VideoDetails';
 import { Player } from 'video-react';
 
 import '../../translations/i18n';
+import GlobalDetails from '@/components/GlobalDetails';
 
 export default function () {
   const { t } = useTranslation('dashboard');
@@ -88,7 +89,13 @@ export default function () {
             <div>
               <div className="semibold lava-6 mb-1">{t('lostData')}</div>
 
-              <Uploader setSelectedVideo={setSelectedVideo} addImage={addImage} />
+              <Uploader
+                setSelectedVideo={(video: VideoUpload) => {
+                  setSelectedVideo(video);
+                  setSelectedImage(null);
+                }}
+                addImage={addImage}
+              />
             </div>
 
             {images?.length > 0 && (
@@ -159,7 +166,7 @@ export default function () {
                 </div>
               </Row>
 
-              <Row>
+              <Row horizontalAlign="center">
                 <img src={selectedImage.src} alt={t('selectedImage')} className="w-50" />
               </Row>
             </>
@@ -213,7 +220,7 @@ export default function () {
 
       <Column xs={100} md={50}>
         {selectedImage ? (
-          <Card>
+          <div>
             <Card className="py-1 px-2 mb-1 sky-1-bg block" rounded={true} tabIndex={0}>
               <div className="block">
                 <div>{`${t('common:name')}: ${selectedImage.name}`}</div>
@@ -237,18 +244,37 @@ export default function () {
                 />
               </div>
             </Card>
-
-            <LicenseModal />
-          </Card>
+          </div>
         ) : selectedVideo ? (
           <Card className="py-1 px-2 mb-1 sky-1-bg block" rounded={true} tabIndex={0}>
             <VideoDetails videoUpload={selectedVideo} addImage={addImage} />
           </Card>
-        ) : (
-          <Card className="py-1 px-2 mb-1 sky-1-bg flex" rounded={true} tabIndex={0}>
-            {t('uploadAndSelect')}
+        ) : null}
+
+        {(selectedImage || selectedVideo || images?.length > 0) && (
+          <Card className="py-1 px-2 mb-1 sky-1-bg block" rounded={true} tabIndex={0}>
+            <div className="semibold mb-1">{t('utility')}</div>
+
+            <div className="mb-1/2">
+              <GlobalDetails
+                addToAllImages={(description: string) => {
+                  // add description to the end of all image descriptions
+                  setImages((prev) =>
+                    prev.map((image) => ({ ...image, description: `${image.description}, ${description}` }))
+                  );
+                  setSelectedImage({ ...selectedImage, description: `${selectedImage.description}, ${description}` });
+                }}
+                setToAllImages={(description: string) => {
+                  // set description to all images
+                  setImages((prev) => prev.map((image) => ({ ...image, description })));
+                  setSelectedImage({ ...selectedImage, description });
+                }}
+              />
+            </div>
           </Card>
         )}
+
+        <LicenseModal />
       </Column>
     </Row>
   );

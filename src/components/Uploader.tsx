@@ -7,7 +7,7 @@ import { VideoUpload } from '@/types/VideoUpload';
 import 'video-react/dist/video-react.css';
 
 interface UploaderProps {
-  addImage: (image: ImageUpload) => void;
+  addImage: (image: ImageUpload, setSelected: boolean) => void;
   setSelectedVideo: (video: VideoUpload) => void;
 }
 
@@ -54,7 +54,7 @@ export function Uploader(props: UploaderProps) {
           });
         }
       }
-      images.forEach(props.addImage);
+      images.forEach((image) => props.addImage(image, true));
     },
     [props]
   );
