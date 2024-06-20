@@ -165,7 +165,7 @@ export default function () {
         </Card>
 
         <Card className="py-1 px-2 mb-1 sky-1-bg block h-fit" rounded={true} tabIndex={0}>
-          <div className="text-sm mb-1/2">{`Images: ${images?.length ?? 0}`}</div>
+          <div className="text-sm mb-1/2">{`${t('images')}: ${images?.length ?? 0}`}</div>
 
           {selectedImage ? (
             <>

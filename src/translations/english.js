@@ -30,6 +30,7 @@ export default {
     applyToNext: 'Apply this caption to next image',
     takeFromPrevious: 'Take caption from previous image',
     widthHeight: `Width x Height`,
+    images: 'Images',
   },
   uploader: {
     descriptionForAllImages: 'Caption for all images',
