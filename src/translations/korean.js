@@ -23,6 +23,16 @@ export default {
     uploadAndSelect: '레이블을 추가하려면 이미지를 업로드하고 선택하세요',
     videoDuration: '비디오 지속 시간',
   },
+  uploader: {
+    descriptionForAllImages: '모든 이미지에 대한 설명',
+    endTime: '종료 시간 (초)',
+    failedToConvert: '데이터 URL로 변환하지 못했습니다',
+    generateImages: '이미지 생성',
+    startTime: '시작 시간 (초)',
+    uploadMessage: '드래그 앤 드롭 또는 클릭하여 선택 (MP4, JPEG, PNG)',
+    uploadMP4Here: '여기에 업로드 (MP4, JPEG, PNG)',
+    videoDetails: '비디오 세부 정보',
+  },
   terms: {
     aboveNotice: `위의 저작권 고지 및 이 허가 고지는 소프트웨어의 모든 사본 또는 주요 부분에 포함되어야 합니다.`,
     createdAndMaintained: `<span>MIT 라이선스</span>: 개인 및 상업 프로젝트에서 무료로 사용 가능`,
@@ -33,14 +43,4 @@ export default {
     openSourceTitle: '오픈 소스 라이선스',
     softwareAsIs: `본 소프트웨어는 "있는 그대로" 제공되며, 상품성, 특정 목적에 대한 적합성 및 비침해에 대한 보증을 포함한 명시적이거나 묵시적인 어떠한 종류의 보증도 제공하지 않습니다. 어떠한 경우에도 저자 또는 저작권자는 계약, 불법 행위 또는 기타 행위로 인해 발생하는 소프트웨어 또는 소프트웨어 사용 또는 기타 거래와 관련하여 발생하는 어떠한 청구, 손해 또는 기타 책임에 대해 책임을 지지 않습니다.`,
   },
-  uploader: {
-    descriptionForAllImages: '모든 이미지에 대한 설명',
-    endTime: '종료 시간 (초)',
-    failedToConvert: '데이터 URL로 변환하지 못했습니다',
-    generateImages: '이미지 생성',
-    startTime: '시작 시간 (초)',
-    uploadMessage: '드래그 앤 드롭 또는 클릭하여 선택 (MP4, JPEG, PNG)',
-    uploadMP4Here: '여기에 업로드 (MP4, JPEG, PNG)',
-    videoDetails: '비디오 세부 정보',
-  }
 };

@@ -23,6 +23,16 @@ export default {
     uploadAndSelect: 'Sube y selecciona una imagen para añadir etiquetas',
     videoDuration: 'Duración del video',
   },
+  uploader: {
+    descriptionForAllImages: 'Descripción para todas las imágenes',
+    endTime: 'Hora de finalización (segundos)',
+    failedToConvert: 'Error al convertir a URL de datos',
+    generateImages: 'Generar imágenes',
+    startTime: 'Hora de inicio (segundos)',
+    uploadMessage: 'Arrastra y suelta o haz clic para seleccionar (MP4, JPEG, PNG)',
+    uploadMP4Here: 'Sube aquí (MP4, JPEG, PNG)',
+    videoDetails: 'Detalles del video',
+  },
   terms: {
     aboveNotice: `El aviso de derechos de autor anterior y este aviso de permiso deberán incluirse en todas las copias o partes sustanciales del software.`,
     createdAndMaintained: `<span>Licencia MIT</span>: libre de usar en proyectos personales y comerciales`,
@@ -33,14 +43,4 @@ export default {
     openSourceTitle: 'Licencia de código abierto',
     softwareAsIs: `EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O IMPLÍCITA, INCLUYENDO PERO NO LIMITADO A LAS GARANTÍAS DE COMERCIABILIDAD, APTITUD PARA UN PROPÓSITO PARTICULAR Y NO INFRACCIÓN. EN NINGÚN CASO LOS AUTORES O TITULARES DE LOS DERECHOS DE AUTOR SERÁN RESPONSABLES DE NINGUNA RECLAMACIÓN, DAÑOS U OTRA RESPONSABILIDAD, YA SEA EN UNA ACCIÓN DE CONTRATO, AGRAVIO O DE OTRO MODO, QUE SURJA DE, FUERA O EN CONEXIÓN CON EL SOFTWARE O EL USO U OTROS TRATOS EN EL SOFTWARE.`,
   },
-  uploader: {
-    descriptionForAllImages: 'Descripción para todas las imágenes',
-    endTime: 'Hora de finalización (segundos)',
-    failedToConvert: 'Error al convertir a URL de datos',
-    generateImages: 'Generar imágenes',
-    startTime: 'Hora de inicio (segundos)',
-    uploadMessage: 'Arrastra y suelta o haz clic para seleccionar (MP4, JPEG, PNG)',
-    uploadMP4Here: 'Sube aquí (MP4, JPEG, PNG)',
-    videoDetails: 'Detalles del video',
-  }
 };

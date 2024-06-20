@@ -23,6 +23,16 @@ export default {
     uploadAndSelect: '上传并选择一张图片以添加标签',
     videoDuration: '视频持续时间',
   },
+  uploader: {
+    descriptionForAllImages: '所有图片的描述',
+    endTime: '结束时间（秒）',
+    failedToConvert: '转换为数据URL失败',
+    generateImages: '生成图片',
+    startTime: '开始时间（秒）',
+    uploadMessage: '拖放或点击选择（MP4、JPEG、PNG）',
+    uploadMP4Here: '在此上传（MP4、JPEG、PNG）',
+    videoDetails: '视频详情',
+  },
   terms: {
     aboveNotice: `上述版权声明和本许可声明应包含在软件的所有副本或主要部分中。`,
     createdAndMaintained: `<span>MIT许可</span>：可在个人和商业项目中免费使用`,
@@ -33,14 +43,4 @@ export default {
     openSourceTitle: '开源许可证',
     softwareAsIs: `本软件按“原样”提供，不提供任何形式的明示或暗示保证，包括但不限于对适销性、特定用途适用性和非侵权性的保证。在任何情况下，作者或版权持有人均不对因本软件或本软件的使用或其他交易产生的任何索赔、损害或其他责任负责，无论是在合同诉讼、侵权诉讼或其他诉讼中。`,
   },
-  uploader: {
-    descriptionForAllImages: '所有图片的描述',
-    endTime: '结束时间（秒）',
-    failedToConvert: '转换为数据URL失败',
-    generateImages: '生成图片',
-    startTime: '开始时间（秒）',
-    uploadMessage: '拖放或点击选择（MP4、JPEG、PNG）',
-    uploadMP4Here: '在此上传（MP4、JPEG、PNG）',
-    videoDetails: '视频详情',
-  }
 };
