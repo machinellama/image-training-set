@@ -34,7 +34,7 @@ La privacidad es un aspecto fundamental de este repositorio. Tus datos nunca se 
   - Establecer un tiempo de inicio y fin para capturar imágenes del video
   - Las imágenes pueden generarse a intervalos de 1 segundo
   - O tomar capturas de pantalla de fotogramas específicos
-  - Añadir descripciones que se apliquen a las imágenes generadas
+  - Añadir una descripción a las imágenes generadas
 - Descargar un archivo ZIP con todas las imágenes y las descripciones asociadas en archivos txt
   - Seleccionar un ancho máximo para las imágenes en el archivo ZIP (512px, 768px o 1024px)
 - Extraer todos los archivos a una sola carpeta para entrenamiento, luego dirígete a [kohya_ss](https://github.com/bmaltais/kohya_ss) para entrenar o afinar tu modelo de Stable Diffusion

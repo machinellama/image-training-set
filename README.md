@@ -34,7 +34,7 @@ Privacy is a pivotal aspect of this repo. Your data will never be sent outside y
   - Set a start and end time to capture images from the video
   - Images can be generated at 1 second intervals
   - Or take a screenshot of particular frames
-  - Add a descriptions which apply to generated images
+  - Add a caption for generated images
 - Download a ZIP file with all images and associated captions in txt files
   - Select a max width for images in the ZIP file (512px, 768px, or 1024px)
 - Extract all files to a single folder for training, then head to [kohya_ss](https://github.com/bmaltais/kohya_ss) to train or fine-tune your Stable Diffusion model
