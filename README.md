@@ -36,8 +36,8 @@ Privacy is a pivotal aspect of this repo. Your data will never be sent outside y
   - Or take a screenshot of particular frames
   - Add a descriptions which apply to generated images
 - Download a ZIP file with all images and associated captions in txt files
-- If you download multiple ZIP files, extract all files to a single folder for training
-- Once you have all your training data (images and txt files) in a single folder, head to [kohya_ss](https://github.com/bmaltais/kohya_ss) to train or fine-tune your Stable Diffusion model
+  - Select a max width for images in the ZIP file (512px, 768px, or 1024px)
+- Extract all files to a single folder for training, then head to [kohya_ss](https://github.com/bmaltais/kohya_ss) to train or fine-tune your Stable Diffusion model
 
 ## Screenshots
 
