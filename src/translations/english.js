@@ -29,6 +29,9 @@ export default {
     autoSave: '(caption will auto-save for this image)',
     applyToNext: 'Apply this caption to next image',
     takeFromPrevious: 'Take caption from previous image',
+    sizeOne: `512px (recommended)`,
+    sizeTwo: `768px`,
+    sizeThree: `1024px`,
   },
   uploader: {
     descriptionForAllImages: 'Caption for all images',

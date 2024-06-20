@@ -70,7 +70,7 @@ export function Uploader(props: UploaderProps) {
 
   return (
     <div>
-      <div {...getRootProps()} className="h-full pointer border-1 border-stone-10 p-1 w-full">
+      <div {...getRootProps()} className="h-full pointer border-1 border-stone-10 p-1 w-fit">
         <input {...getInputProps()} />
         <div>{isDragActive ? <p>{t('uploadMP4Here')}</p> : <p>{t('uploadMessage')}</p>}</div>
       </div>

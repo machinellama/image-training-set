@@ -13,7 +13,8 @@ import {
   XCircleIcon,
   DeleteIcon,
   RightArrowCircleIcon,
-  LeftArrowCircleIcon
+  LeftArrowCircleIcon,
+  Radio
 } from 'finallyreact';
 import { ImageUpload } from '@/types/ImageUpload';
 import { VideoUpload } from '@/types/VideoUpload';
@@ -29,12 +30,15 @@ import GlobalDetails from '@/components/GlobalDetails';
 
 export default function () {
   const { t } = useTranslation('dashboard');
-  const { isMobile } = useWindowSize();
+  const { isMobile, screenSize } = useWindowSize();
   const [downloadLoading, setDownloadLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState<ImageUpload>(null);
   const [images, setImages] = useState([] as ImageUpload[]);
   const [selectedVideo, setSelectedVideo] = useState<VideoUpload>(null);
   const [currentSeconds, setCurrentSeconds] = useState(0);
+  const [downloadSize, setDownloadSize] = useState(512);
+
+  const isTablet = screenSize === 'md' || isMobile;
 
   function scrollTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -121,17 +125,39 @@ export default function () {
                 {downloadLoading ? (
                   <Loading rainbow={true} className="mt-1 mr-1" />
                 ) : (
-                  <Button
-                    text={t('downloadZip')}
-                    className="w-fit"
-                    onClick={() => {
-                      setDownloadLoading(true);
-                      downloadZip({ images }).finally(() => {
-                        setDownloadLoading(false);
-                      });
-                    }}
-                    disabled={images.length === 0}
-                  />
+                  <div className={isTablet ? 'block' : 'flex flex-multi align-center'}>
+                    <Radio
+                      options={[
+                        {
+                          label: t('sizeOne'),
+                          value: '512'
+                        },
+                        {
+                          label: t('sizeTwo'),
+                          value: '768'
+                        },
+                        {
+                          label: t('sizeThree'),
+                          value: '1024'
+                        }
+                      ]}
+                      onChange={(e: any) => setDownloadSize(Number(e.target.value))}
+                      className="w-fit mr-1"
+                      initialValue="512"
+                    />
+
+                    <Button
+                      text={t('downloadZip')}
+                      className="w-fit"
+                      onClick={() => {
+                        setDownloadLoading(true);
+                        downloadZip({ images, downloadSize }).finally(() => {
+                          setDownloadLoading(false);
+                        });
+                      }}
+                      disabled={images.length === 0}
+                    />
+                  </div>
                 )}
               </div>
             )}
@@ -267,7 +293,13 @@ export default function () {
                       const previousIndex = index === 0 ? images.length - 1 : index - 1;
                       const previousImage = images[previousIndex];
                       setSelectedImage({ ...selectedImage, description: previousImage.description });
-                      setImages(images.map((image) => (image.name === selectedImage.name ? { ...image, description: previousImage.description } : image)));
+                      setImages(
+                        images.map((image) =>
+                          image.name === selectedImage.name
+                            ? { ...image, description: previousImage.description }
+                            : image
+                        )
+                      );
                     }}
                   />
 

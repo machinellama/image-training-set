@@ -37,6 +37,40 @@ const dataURLToBlob = (dataURL) => {
   }
 };
 
+// Function to resize image to downloadSize while keeping aspect ratio
+const resizeToCommonSize = async (file, downloadSize) => {
+  return new Promise((resolve, reject) => {
+    const img = document.createElement('img');
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      let width = img.width;
+      let height = img.height;
+
+      if (width > height) {
+        if (width > downloadSize) {
+          height = Math.round((height *= downloadSize / width));
+          width = downloadSize;
+        }
+      } else {
+        if (height > downloadSize) {
+          width = Math.round((width *= downloadSize / height));
+          height = downloadSize;
+        }
+      }
+
+      canvas.width = width;
+      canvas.height = height;
+      ctx.drawImage(img, 0, 0, width, height);
+      canvas.toBlob((blob) => {
+        resolve(blob);
+      }, file.type);
+    };
+    img.onerror = (error) => reject(error);
+    img.src = URL.createObjectURL(file);
+  });
+};
+
 // Function to convert a Blob to a File
 const blobToFile = (blob, fileName) => {
   if (!blob) {
@@ -46,7 +80,7 @@ const blobToFile = (blob, fileName) => {
 };
 
 // Function to add a URL (blob or data) as a file to a zip archive
-const addURLToZip = async (url, fileName, zip) => {
+const addURLToZip = async (url, fileName, zip, downloadSize) => {
   let blob;
 
   if (url.startsWith('blob:')) {
@@ -61,11 +95,12 @@ const addURLToZip = async (url, fileName, zip) => {
     throw new Error('Failed to create Blob from URL');
   }
 
-  const file = blobToFile(blob, fileName);
+  const resizedBlob = await resizeToCommonSize(blob, downloadSize);
+  const file = blobToFile(resizedBlob, fileName);
   zip.file(fileName, file);
 };
 
-export default async function ({ images }: { images: ImageUpload[] }): Promise<void> {
+export default async function ({ images, downloadSize }: { images: ImageUpload[], downloadSize: number }): Promise<void> {
   const zip = new JSZip();
 
   for (let i = 0; i < images.length; i++) {
@@ -73,7 +108,7 @@ export default async function ({ images }: { images: ImageUpload[] }): Promise<v
 
     const dataURL = image.src;
     const filename = `${image.name}.png`;
-    await addURLToZip(dataURL, filename, zip);
+    await addURLToZip(dataURL, filename, zip, downloadSize);
 
     const textFileName = `${image.name}.txt`;
     const description = image.description;
