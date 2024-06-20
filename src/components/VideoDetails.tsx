@@ -90,7 +90,12 @@ export function VideoDetails(props: UploaderProps) {
               text={t('screenshot')}
               onClick={() => {
                 setConvertLoading(true);
-                videoToImages({ videoURL: url, startTime: props.currentSeconds, endTime: props.currentSeconds + 1 })
+                videoToImages({
+                  videoURL: url,
+                  startTime: props.currentSeconds,
+                  endTime: props.currentSeconds + 1,
+                  videoName: name
+                })
                   .then((images) => {
                     images.forEach((i) => {
                       i.description = description;
@@ -110,7 +115,7 @@ export function VideoDetails(props: UploaderProps) {
               disabled={convertLoading || !start || !end || start >= end}
               onClick={() => {
                 setConvertLoading(true);
-                videoToImages({ videoURL: url, startTime: start, endTime: end + 1 })
+                videoToImages({ videoURL: url, startTime: start, endTime: end + 1, videoName: name })
                   .then((images) => {
                     images.forEach((i) => {
                       i.description = description;

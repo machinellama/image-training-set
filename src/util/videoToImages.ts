@@ -14,7 +14,8 @@ declare module '@ffmpeg/ffmpeg' {
 export default async function({
   videoURL,
   startTime,
-  endTime
+  endTime,
+  videoName
 }): Promise<ImageUpload[]> {
   const ffmpeg = createFFmpeg({
     corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
@@ -46,10 +47,12 @@ export default async function({
   const zip = new JSZip();
   const outputFiles = ffmpeg.FS('readdir' as any, '/').filter(file => file.endsWith('.png'));
 
+  const videoNameNoEnding = videoName.split('.').slice(0, -1).join('.');
+
   const returnImages = outputFiles?.map((file) => {
     const data = ffmpeg.FS('readFile' as any, file);
     const src = URL.createObjectURL(new Blob([data.buffer], { type: 'image/png' }));
-    return { name: file, type: 'image/png', src };
+    return { name: `${videoNameNoEnding}-${file}`, type: 'image/png', src };
   });
 
   return returnImages;
