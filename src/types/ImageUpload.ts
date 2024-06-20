@@ -3,4 +3,6 @@ export interface ImageUpload {
   type: string;
   src?: string;
   description?: string;
+  width?: number;
+  height?: number;
 }

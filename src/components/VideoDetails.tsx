@@ -37,6 +37,16 @@ export function VideoDetails(props: UploaderProps) {
     setUrl(props.videoUpload.url);
   }, [props.videoUpload]);
 
+  const getImageDimensions = (src: string) => {
+    return new Promise<{ width: number; height: number }>((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        resolve({ width: img.width, height: img.height });
+      };
+      img.src = src;
+    });
+  };
+
   return (
     <div>
       <p className="mt-1">{`${t('common:name')}: ${name}`}</p>
@@ -97,8 +107,12 @@ export function VideoDetails(props: UploaderProps) {
                   videoName: name
                 })
                   .then((images) => {
-                    images.forEach((i) => {
+                    images.forEach(async (i) => {
+                      const dimensions = await getImageDimensions(i.src);
+                      i.width = dimensions.width;
+                      i.height = dimensions.height;
                       i.description = description;
+
                       props.addImage(i, false);
                     });
                   })
@@ -117,7 +131,10 @@ export function VideoDetails(props: UploaderProps) {
                 setConvertLoading(true);
                 videoToImages({ videoURL: url, startTime: start, endTime: end + 1, videoName: name })
                   .then((images) => {
-                    images.forEach((i) => {
+                    images.forEach(async (i) => {
+                      const dimensions = await getImageDimensions(i.src);
+                      i.width = dimensions.width;
+                      i.height = dimensions.height;
                       i.description = description;
                       props.addImage(i, false);
                     });

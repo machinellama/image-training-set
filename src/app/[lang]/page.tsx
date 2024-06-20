@@ -129,15 +129,15 @@ export default function () {
                     <Radio
                       options={[
                         {
-                          label: t('sizeOne'),
+                          label: '512px',
                           value: '512'
                         },
                         {
-                          label: t('sizeTwo'),
+                          label: '768px',
                           value: '768'
                         },
                         {
-                          label: t('sizeThree'),
+                          label: '1024px',
                           value: '1024'
                         }
                       ]}
@@ -263,6 +263,7 @@ export default function () {
               <div className="block">
                 <div>{`${t('common:name')}: ${selectedImage.name}`}</div>
                 <div>{`${t('common:type')}: ${selectedImage.type}`}</div>
+                <div>{`${t('widthHeight')}: ${selectedImage.width} x ${selectedImage.height}`}</div>
 
                 <TextInput
                   className="h-fit mt-1-1/2"

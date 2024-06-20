@@ -1,5 +1,4 @@
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
-import JSZip from 'jszip';
 import { ImageUpload } from '@/types/ImageUpload';
 
 // Extend the FS method types
@@ -44,7 +43,6 @@ export default async function({
     '-vf', `fps=1`, '%03d.png'
   );
 
-  const zip = new JSZip();
   const outputFiles = ffmpeg.FS('readdir' as any, '/').filter(file => file.endsWith('.png'));
 
   const videoNameNoEnding = videoName.split('.').slice(0, -1).join('.');

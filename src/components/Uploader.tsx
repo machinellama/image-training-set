@@ -28,6 +28,16 @@ export function Uploader(props: UploaderProps) {
     });
   };
 
+  const getImageDimensions = (src: string) => {
+    return new Promise<{ width: number; height: number }>((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        resolve({ width: img.width, height: img.height });
+      };
+      img.src = src;
+    });
+  };
+
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
       const images: ImageUpload[] = [];
@@ -47,10 +57,14 @@ export function Uploader(props: UploaderProps) {
             duration: 0
           });
         } else if (file.type === 'image/png' || file.type === 'image/jpeg') {
+          const dimensions = await getImageDimensions(src);
+
           images.push({
             name,
             type,
-            src
+            src,
+            width: dimensions.width,
+            height: dimensions.height
           });
         }
       }
