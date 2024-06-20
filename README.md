@@ -32,8 +32,9 @@ Privacy is a pivotal aspect of this repo. Your data will never be sent outside y
   - The more detailed the captions, the better the training set
 - Upload an MP4 video file
   - Set a start and end time to capture images from the video
-  - Images will be generated at 1 second intervals
-  - Add a description which applies to every generated image
+  - Images can be generated at 1 second intervals
+  - Or take a screenshot of particular frames
+  - Add a descriptions which apply to generated images
 - Download a ZIP file with all images and associated captions in txt files
 - If you download multiple ZIP files, extract all files to a single folder for training
 - Once you have all your training data (images and txt files) in a single folder, head to [kohya_ss](https://github.com/bmaltais/kohya_ss) to train or fine-tune your Stable Diffusion model
