@@ -10,6 +10,7 @@ import 'video-react/dist/video-react.css';
 interface UploaderProps {
   videoUpload: VideoUpload;
   addImage: (image: ImageUpload, setSelected: boolean) => void;
+  currentSeconds: number;
 }
 
 export function VideoDetails(props: UploaderProps) {
@@ -40,9 +41,10 @@ export function VideoDetails(props: UploaderProps) {
     <div>
       <p className="mt-1">{`${t('common:name')}: ${name}`}</p>
       <p>{`${t('common:type')}: video/mp4`}</p>
-      <p> {`${t('common:duration')}: ${duration.toFixed(2)} ${t('common:seconds')}`}</p>
+      <p>{`${t('common:duration')}: ${duration.toFixed(2)} ${t('common:seconds')}`}</p>
+      <p>{`${t('currentTime')}: ${(props.currentSeconds || 0).toFixed(2)} ${t('common:seconds')}`}</p>
 
-      <div className="block mb-1/2 mt-1 h-fit">
+      <div className="block mb-1/2 mt-1-1/2 h-fit">
         <NumberInput
           type="number"
           value={start}
@@ -84,13 +86,31 @@ export function VideoDetails(props: UploaderProps) {
         ) : (
           <>
             <Button
+              className="mr-1"
+              text={t('screenshot')}
+              onClick={() => {
+                setConvertLoading(true);
+                videoToImages({ videoURL: url, startTime: props.currentSeconds, endTime: props.currentSeconds + 1 })
+                  .then((images) => {
+                    images.forEach((i) => {
+                      i.description = description;
+                      props.addImage(i, false);
+                    });
+                  })
+                  .finally(() => {
+                    setConvertLoading(false);
+                  });
+              }}
+            />
+
+            <Button
               color="blue-6"
               className="white"
               text={t('generateImages')}
               disabled={convertLoading || !start || !end || start >= end}
               onClick={() => {
                 setConvertLoading(true);
-                videoToImages({ videoURL: url, startTime: start, endTime: end })
+                videoToImages({ videoURL: url, startTime: start, endTime: end + 1 })
                   .then((images) => {
                     images.forEach((i) => {
                       i.description = description;

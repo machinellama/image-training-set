@@ -34,6 +34,7 @@ export default function () {
   const [selectedImage, setSelectedImage] = useState<ImageUpload>(null);
   const [images, setImages] = useState([] as ImageUpload[]);
   const [selectedVideo, setSelectedVideo] = useState<VideoUpload>(null);
+  const [currentSeconds, setCurrentSeconds] = useState(0);
 
   function scrollTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -47,7 +48,15 @@ export default function () {
         const duration = playerRef.current.video.video.duration;
         if (selectedVideo) {
           setSelectedVideo({ ...selectedVideo, duration });
+          setCurrentSeconds(0);
         }
+      }
+    };
+
+    const handleTimeUpdate = () => {
+      if (playerRef.current && playerRef.current.video) {
+        const currentTime = playerRef.current.video.video.currentTime;
+        setCurrentSeconds(currentTime);
       }
     };
 
@@ -55,11 +64,14 @@ export default function () {
     if (videoElement) {
       videoElement.disablePictureInPicture = true;
       videoElement.addEventListener('loadedmetadata', handleLoadedMetadata);
+      videoElement.addEventListener('timeupdate', handleTimeUpdate);
+
       return () => {
         videoElement.removeEventListener('loadedmetadata', handleLoadedMetadata);
+        videoElement.removeEventListener('timeupdate', handleTimeUpdate);
       };
     }
-  }, [selectedVideo]);
+  }, [selectedVideo, setCurrentSeconds]);
 
   function addImage(image: ImageUpload, setSelected = true) {
     let newName = image.name;
@@ -74,6 +86,12 @@ export default function () {
     if (setSelected) {
       setSelectedImage(image);
     }
+  }
+
+  function reset() {
+    setSelectedImage(null);
+    setSelectedVideo(null);
+    setCurrentSeconds(0);
   }
 
   return (
@@ -91,8 +109,8 @@ export default function () {
 
               <Uploader
                 setSelectedVideo={(video: VideoUpload) => {
+                  reset();
                   setSelectedVideo(video);
-                  setSelectedImage(null);
                 }}
                 addImage={addImage}
               />
@@ -177,13 +195,7 @@ export default function () {
                   <div />
 
                   <div className="flex">
-                    <XCircleIcon
-                      className="pointer w-2"
-                      onClick={() => {
-                        setSelectedImage(null);
-                        setSelectedVideo(null);
-                      }}
-                    />
+                    <XCircleIcon className="pointer w-2" onClick={reset} />
                   </div>
                 </div>
               </Row>
@@ -247,7 +259,7 @@ export default function () {
           </div>
         ) : selectedVideo ? (
           <Card className="py-1 px-2 mb-1 sky-1-bg block" rounded={true} tabIndex={0}>
-            <VideoDetails videoUpload={selectedVideo} addImage={addImage} />
+            <VideoDetails videoUpload={selectedVideo} addImage={addImage} currentSeconds={currentSeconds} />
           </Card>
         ) : null}
 
