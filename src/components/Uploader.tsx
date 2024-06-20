@@ -54,7 +54,11 @@ export function Uploader(props: UploaderProps) {
           });
         }
       }
-      images.forEach((image) => props.addImage(image, true));
+      if (images?.length > 1) {
+        images.forEach((image) => props.addImage(image, false));
+      } else {
+        images.forEach((image) => props.addImage(image, true));
+      }
     },
     [props]
   );

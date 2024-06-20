@@ -84,7 +84,7 @@ export default function () {
     setImages((prev) => [...prev, { ...image, name: newName }]);
 
     if (setSelected) {
-      setSelectedImage(image);
+      setSelectedImage({ ...image, name: newName });
     }
   }
 
@@ -169,7 +169,7 @@ export default function () {
                     <DeleteIcon
                       className="pointer mr-1 w-2"
                       onClick={() => {
-                        setImages((prev) => prev.filter((image) => image.name !== selectedImage.name));
+                        setImages(images.filter((image) => image.name !== selectedImage.name));
                         setSelectedImage(null);
                       }}
                     />
@@ -239,7 +239,7 @@ export default function () {
                 <div>{`${t('common:type')}: ${selectedImage.type}`}</div>
 
                 <TextInput
-                  className="h-fit mt-1-1/2 mb-1"
+                  className="h-fit mt-1-1/2"
                   type="textarea"
                   inputProps={{ className: 'w-full h-6' }}
                   value={selectedImage.description}
@@ -249,11 +249,41 @@ export default function () {
                       ...selectedImage,
                       description: e.target.value
                     };
+                    setImages(images.map((image) => (image.name === selectedImage.name ? newImage : image)));
                     setSelectedImage(newImage);
-                    setImages((prev) => prev.map((image) => (image.name === selectedImage.name ? newImage : image)));
                   }}
                   placeholder={t('imageDescription')}
                 />
+
+                <p className="mb-1/2">{t('autoSave')}</p>
+
+                <div className="flex justify-end w-full">
+                  <Button
+                    text={t('takeFromPrevious')}
+                    className="mr-1"
+                    onClick={() => {
+                      // take description from previous image
+                      const index = images.findIndex((image) => image.name === selectedImage.name);
+                      const previousIndex = index === 0 ? images.length - 1 : index - 1;
+                      const previousImage = images[previousIndex];
+                      setSelectedImage({ ...selectedImage, description: previousImage.description });
+                      setImages(images.map((image) => (image.name === selectedImage.name ? { ...image, description: previousImage.description } : image)));
+                    }}
+                  />
+
+                  <Button
+                    text={t('applyToNext')}
+                    className="mr-1"
+                    onClick={() => {
+                      // apply this description to the next image
+                      const index = images.findIndex((image) => image.name === selectedImage.name);
+                      const nextIndex = index === images.length - 1 ? 0 : index + 1;
+                      const nextImage = images[nextIndex];
+                      const newImage = { ...nextImage, description: selectedImage.description };
+                      setImages(images.map((image) => (image.name === nextImage.name ? newImage : image)));
+                    }}
+                  />
+                </div>
               </div>
             </Card>
           </div>
@@ -271,14 +301,12 @@ export default function () {
               <GlobalDetails
                 addToAllImages={(description: string) => {
                   // add description to the end of all image descriptions
-                  setImages((prev) =>
-                    prev.map((image) => ({ ...image, description: `${image.description}, ${description}` }))
-                  );
+                  setImages(images.map((image) => ({ ...image, description: `${image.description}, ${description}` })));
                   setSelectedImage({ ...selectedImage, description: `${selectedImage.description}, ${description}` });
                 }}
                 setToAllImages={(description: string) => {
                   // set description to all images
-                  setImages((prev) => prev.map((image) => ({ ...image, description })));
+                  setImages(images.map((image) => ({ ...image, description })));
                   setSelectedImage({ ...selectedImage, description });
                 }}
               />

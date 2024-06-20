@@ -26,6 +26,9 @@ export default {
     utility: 'Utility',
     addToAllImages: 'Add to end of all image captions',
     setToAllImages: 'Set as image caption for all images',
+    autoSave: '(caption will auto-save for this image)',
+    applyToNext: 'Apply this caption to next image',
+    takeFromPrevious: 'Take caption from previous image',
   },
   terms: {
     aboveNotice: `The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.`,

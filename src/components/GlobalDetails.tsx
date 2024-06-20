@@ -22,7 +22,7 @@ export function GlobalDetails(props: GlobalDetailsProps) {
           type="textarea"
           value={addToAllDescription}
           onChange={(e: any) => setAddToAllDescription(e.target.value)}
-          placeholder={t('common:description')}
+          placeholder={t('addToAllImages')}
           className="mb-1/2 w-full h-fit"
           inputProps={{ className: 'w-full h-6' }}
         />
@@ -42,7 +42,7 @@ export function GlobalDetails(props: GlobalDetailsProps) {
           type="textarea"
           value={setToAllDescription}
           onChange={(e: any) => setSetToAllDescription(e.target.value)}
-          placeholder={t('common:description')}
+          placeholder={t('setToAllImages')}
           className="mb-1/2 w-full h-fit"
           inputProps={{ className: 'w-full h-6' }}
         />
