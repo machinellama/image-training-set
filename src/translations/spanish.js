@@ -39,6 +39,7 @@ export default {
     failedToConvert: 'Error al convertir a URL de datos',
     generateImages: 'Generar imágenes',
     startTime: 'Hora de inicio (segundos)',
+    applyCurrentTime: 'Aplicar hora actual',
     uploadMessage: 'Arrastrar y soltar o hacer clic para seleccionar (MP4, JPEG, PNG)',
     uploadMP4Here: 'Subir aquí (MP4, JPEG, PNG)',
     videoDetails: 'Detalles del video',

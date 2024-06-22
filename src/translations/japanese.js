@@ -39,6 +39,7 @@ export default {
     failedToConvert: 'データURLへの変換に失敗しました',
     generateImages: '画像を生成',
     startTime: '開始時間（秒）',
+    applyCurrentTime: '現在の時間を適用',
     uploadMessage: 'ドラッグ＆ドロップまたはクリックして選択（MP4、JPEG、PNG）',
     uploadMP4Here: 'ここにアップロード（MP4、JPEG、PNG）',
     videoDetails: 'ビデオの詳細',

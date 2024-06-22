@@ -55,18 +55,25 @@ export function VideoDetails(props: UploaderProps) {
       <p>{`${t('currentTime')}: ${(props.currentSeconds || 0).toFixed(2)} ${t('common:seconds')}`}</p>
 
       <div className="block mb-1/2 mt-1-1/2 h-fit">
-        <NumberInput
-          type="number"
-          value={start}
-          onChange={(e: any) => setStartTime(parseInt(e.target.value))}
-          placeholder={t('startTime')}
-          className="mb-1 w-full"
-          decimals={0}
-          minDecimals={0}
-          maxDecimals={0}
-          min={0}
-          max={duration}
-        />
+        <div className="flex align-center mb-1">
+          <NumberInput
+            type="number"
+            value={start}
+            onChange={(e: any) => setStartTime(parseInt(e.target.value))}
+            placeholder={t('startTime')}
+            className="mb-1 mr-1 min-w-10"
+            decimals={0}
+            minDecimals={0}
+            maxDecimals={0}
+            min={0}
+            max={duration}
+          />
+
+          <div className="w-fit text-sm pointer mb-1" onClick={() => setStartTime(props.currentSeconds)}>
+            {t('applyCurrentTime')}
+          </div>
+        </div>
+
         <NumberInput
           type="number"
           value={end}

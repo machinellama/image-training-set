@@ -39,6 +39,7 @@ export default {
     failedToConvert: '转换为数据URL失败',
     generateImages: '生成图片',
     startTime: '开始时间（秒）',
+    applyCurrentTime: '应用当前时间',
     uploadMessage: '拖放或点击选择（MP4、JPEG、PNG）',
     uploadMP4Here: '在此上传（MP4、JPEG、PNG）',
     videoDetails: '视频详情',
