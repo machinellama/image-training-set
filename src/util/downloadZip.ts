@@ -100,6 +100,14 @@ const addURLToZip = async (url, fileName, zip, downloadSize) => {
   zip.file(fileName, file);
 };
 
+function convertNewLineToSpace(str: string): string {
+  if (!str) {
+    return '';
+  }
+
+  return str.replace(/\n/g, ' ');
+}
+
 export default async function ({ images, downloadSize }: { images: ImageUpload[], downloadSize: number }): Promise<void> {
   const zip = new JSZip();
 
@@ -111,7 +119,7 @@ export default async function ({ images, downloadSize }: { images: ImageUpload[]
     await addURLToZip(dataURL, filename, zip, downloadSize);
 
     const textFileName = `${image.name}.txt`;
-    const description = image.description;
+    const description = convertNewLineToSpace(image.description);
     zip.file(textFileName, description);
   }
 
