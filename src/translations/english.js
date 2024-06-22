@@ -8,6 +8,7 @@ export default {
     seconds: 'Seconds',
     type: 'Type',
     description: 'Caption',
+    reset: 'Reset',
   },
   dashboard: {
     currentTime: 'Current time',

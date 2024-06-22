@@ -98,6 +98,11 @@ export default function () {
     setCurrentSeconds(0);
   }
 
+  function onReset() {
+    setImages([]);
+    reset();
+  }
+
   return (
     <Row className="mt-1 h-full mb-4">
       <Column xs={100} md={50}>
@@ -148,7 +153,7 @@ export default function () {
 
                     <Button
                       text={t('downloadZip')}
-                      className="w-fit"
+                      className="w-fit mr-1"
                       onClick={() => {
                         setDownloadLoading(true);
                         downloadZip({ images, downloadSize }).finally(() => {
@@ -156,6 +161,13 @@ export default function () {
                         });
                       }}
                       disabled={images.length === 0}
+                    />
+
+                    <Button
+                      text={t('common:reset')}
+                      className="w-fit"
+                      onClick={onReset}
+                      disabled={images.length === 0 || downloadLoading}
                     />
                   </div>
                 )}

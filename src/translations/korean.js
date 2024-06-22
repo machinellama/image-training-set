@@ -8,6 +8,7 @@ export default {
     seconds: '초',
     type: '유형',
     description: '설명',
+    reset: '재설정',
   },
   dashboard: {
     currentTime: '현재 시간',

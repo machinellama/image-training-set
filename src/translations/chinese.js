@@ -8,6 +8,7 @@ export default {
     seconds: '秒',
     type: '类型',
     description: '说明',
+    reset: '重置',
   },
   dashboard: {
     currentTime: '当前时间',

@@ -8,6 +8,7 @@ export default {
     seconds: '秒',
     type: 'タイプ',
     description: '説明',
+    reset: 'リセット',
   },
   dashboard: {
     currentTime: '現在の時間',
