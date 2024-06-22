@@ -345,14 +345,29 @@ export default function () {
             <div className="mb-1/2">
               <GlobalDetails
                 addToAllImages={(description: string) => {
-                  // add description to the end of all image descriptions
-                  setImages(images.map((image) => ({ ...image, description: `${image.description}, ${description}` })));
-                  setSelectedImage({ ...selectedImage, description: `${selectedImage.description}, ${description}` });
+                  if (images?.length > 0 && description) {
+                    // add description to the end of all image descriptions
+                    setImages(
+                      images.map((image) => ({
+                        ...image,
+                        description: `${image.description ? `${image.description},` : ''} ${description}`
+                      }))
+                    );
+                  }
+
+                  if (selectedImage) {
+                    setSelectedImage({ ...selectedImage, description: `${selectedImage.description}, ${description}` });
+                  }
                 }}
                 setToAllImages={(description: string) => {
-                  // set description to all images
-                  setImages(images.map((image) => ({ ...image, description })));
-                  setSelectedImage({ ...selectedImage, description });
+                  if (images?.length > 0 && description) {
+                    // set description to all images
+                    setImages(images.map((image) => ({ ...image, description })));
+                  }
+
+                  if (selectedImage) {
+                    setSelectedImage({ ...selectedImage, description });
+                  }
                 }}
               />
             </div>
